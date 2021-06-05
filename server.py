@@ -8,43 +8,23 @@ from model import TRADE
 app = Flask(__name__)
 app.config.from_object(__name__)
 
-@app.route("/")
-def index():
-    initialize_model()
-    return redirect(url_for("home"))
 
-# /html/cvr.html
-@app.route("/html/cvr.html", methods=["GET", "POST", "PUT"])
+@app.route("/")
 def home():
     return render_template("home.html")
 
-# /get/cvr
-@app.route("/state", methods=["GET"])
-def inference():
-    line = int(request.args['inputLine'])
-    X = dataset[line_iloc]["data"]
-    X = apply_preprocessing(X.reshape(1, -1), stats, encoder, verbose=False)
-    prob = model.predict_proba(X).item()
-    result = f"{prob*100:.4f}%"
-    return render_template("result.html", value=line, result=result)
+@app.route("/", methods=["POST", "GET"])
+def get_data():
+    if request.method == 'POST':
+        user = request.form['search']
+        return redirect(url_for('success', name=user))
 
-
-@app.route("/update/model", methods=["PUT"])
-def model():
-    global model_version
-    compare_version = get_model_version(Config.BestModelSavePath)
-    if model_version == compare_version:
-        result = "이미 최신 버전의 모델입니다😊"
-    else:
-        initialize_model()
-        result = "모델이 업데이트 되었습니다!👍"
-    return render_template("update.html", result=result)
+@app.route("/success/<name>", methods=["GET"])
+def success(name):
+    return "<xmp>" + str(requestResults(name)) + " </xmp> "
 
 
 def initialize_model():
-    model = 
-    
-    global stats, model_loaded, model, encoder, model_version
     model_dat = load_model_dat(Config.BestModelSavePath)
     model_version = save_model_version(Config.BestModelSavePath, save_path="./server/")
 
