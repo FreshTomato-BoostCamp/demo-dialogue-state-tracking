@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/get/cvr" method="GET">
+        <h1>광고전환확률(CVR)을 확인 할 LINE 번호를 입력해주세요</h1>
+        <input type="number" name="inputLine" value="NUMBER" />
+        <input type="submit" value="CVR 예측하기" />
+        <input type="button" name="inputNumber" value="모델 업데이트" onclick="location.href='/update/model'" />
+    </form>
+</body>
+</html>

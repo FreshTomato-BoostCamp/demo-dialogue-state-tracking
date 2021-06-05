@@ -20,7 +20,7 @@ class TRADEPreprocessor(DSTPreprocessor):
         trg_tokenizer=None,
         ontology=None,
         max_seq_length=512,
-        use_n_gate=5,
+        use_n_gate=3,
     ):
         self.slot_meta = slot_meta
         self.src_tokenizer = src_tokenizer

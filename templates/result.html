@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/get/cvr" method="POST">
+        <h1>{{value}}번 LINE 고객의 광고전환확률(CVR)은 {{result}}입니다.</h1>5709834
+        <h2>다른 고객의 광고전환확률이 궁금하시다면 해당 고객의 LINE 번호를 입력해주세요</h2>
+        <input type="number" name="inputLine" value="NUMBER" />
+        <input type="submit" value="CVR 예측하기" />
+        <input type="button" name="inputNumber" value="모델 업데이트" onclick="location.href='/update/model'" />
+        <input type="button" name="inputNumber" value="홈으로 가기" onclick="location.href='/html/cvr.html'" />
+    </form>
+</body>
+</html>
