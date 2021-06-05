@@ -5,7 +5,6 @@ import torch
 from torch import nn
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-# device = 'cpu'
 
 # NOTE. 시스템 우선 대화 기반으로 구현함
 class DialogueDirector:
@@ -16,7 +15,7 @@ class DialogueDirector:
         self.__device = device
         self.__states = None
         
-    def record(self, dialogue_pair: list) -> DSTInputExample:
+    def record(self, dialogue_pair: list) -> None:
         # extract incoming information
         dial_dict = dict()
         for p in dialogue_pair:
@@ -39,10 +38,10 @@ class DialogueDirector:
         self.__states = self.__get_state()
 
     @property
-    def states(self):
+    def states(self) -> list:
         return self.__states
 
-    def reset_dialogue(self): # 대화 종료
+    def reset_dialogue(self) -> None: # 대화 종료
         """Reset dialogue instance. Used when dialogue has been done"""
         self.__dialogue = self.__initialize_dialogue()
         self.__states = None
@@ -70,7 +69,7 @@ class DialogueDirector:
         guid=0,
         current_turn=[],
         context_turns=[],
-        label=[]
+        label=None
         )
         return dialogue
 
